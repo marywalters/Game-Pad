@@ -1,19 +1,34 @@
-// 
+//
 // Mary Walters || March 2021
 // CRT 360 Advanced Prototyping || GamePad
+int curMode = -1;
 
-#include <Metro.h>          // This adds the Metro library to your sketch
-#include "frame.h"
+#include "frames.h"
 #include "screen.h"
-
-
+#include "tile.h"
+#include "controls.h"
+#include "status.h"
+#include "interaction.h"
+#include "hero.h"
+#include "enemy.h"
+#include "modes.h"
 
 void setup() {
-   Serial.begin(9600);
-   initScreen();
+  Serial.begin(9600);
+initScreen();
+initControls();
+initHero();
+initNeighbors();
+//randomSeed =(analogRead(8));
+
 }
 
 void loop() {
-    checkFrame();
-    //screenTest();
+checkFrameRate();
+getControls();
+runMode();
+//updateHead(0);
+//drawEnemy();
+Serial.println(heroX);
+tft.updateScreen();
 }
